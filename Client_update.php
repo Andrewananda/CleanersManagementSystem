@@ -6,6 +6,43 @@ $rows = mysqli_query($conn,"SELECT * FROM `users` WHERE `id`='$id'");
 $row = mysqli_fetch_array($rows);
 
 ?>
+<?php
+
+if(isset($_POST['submit']))
+{
+
+    $id = $_POST['id'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    
+   $sql = "UPDATE `users` SET `first_name`='$first_name', `last_name`='$last_name', `phone`='$phone', `password`='$password' WHERE `id`='$id'";
+   $run = mysqli_query($conn,$sql);
+
+
+   if($run && mysqli_affected_rows($conn) === 1)
+   {
+       echo 'success';
+       header("Location: allClients.php");
+   }
+   else
+   {
+       die(mysqli_connect_error($conn));
+   }
+    
+   
+
+}
+?>
+
+
+
+
+
+
+
 
 
 <?php include'layouts/sections/sidebar.php';?>
@@ -82,7 +119,7 @@ $row = mysqli_fetch_array($rows);
                             </div>
                             <br>
                             <br>
-                            <input type="hidden" value="<?php echo $row['id'];?>">
+                            <input type="hidden" name="id" value="<?php echo $row['id'];?>">
                             <div style="text-align:center;padding:8px;">
                             <button name="submit" class="btn btn-primary ui-button" >submit</button>
                             <a class="btn btn-primary ui-button ui-state-default ui-corner-all form_det_save btn-info" value="New" href="Client_update.php" tag="a" type="submit" style="width:auto;">New</a>
@@ -100,40 +137,8 @@ $row = mysqli_fetch_array($rows);
 
 </div>
 
-<?php
-$id = $_GET['id'];
 
 
- if(isset($_POST['submit']))
- {
-     $first_name = $_POST['first_name'];
-     $last_name = $_POST['last_name'];
-     $phone = $_POST['phone'];
-     $email = $_POST['email'];
-     $password = md5($_POST['password']);
-     
-    $sql = "UPDATE users SET first_name='$first_name', last_name='$last_name', phone='$phone', password='$password' WHERE id='$id' ";
-    $run = mysqli_query($conn,$sql);
-
-    if($run)
-    {
-        header("Location: addClient.php");
-    }
-    else
-    {
-        die("error" . mysqli_connect_error($conn));
-    }
-     
-    
-
- }
-
-
-
-
-
-
-?>
 
 
 
