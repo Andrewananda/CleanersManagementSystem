@@ -1,6 +1,6 @@
-<div id="wrapper">
 
-    <!-- Sidebar -->
+<div id="wrapper">
+      <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="/cleaners.com">
@@ -35,7 +35,7 @@
           <span>Cleaners Module</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="cleaners.php">Add Cleaner</a>
+          <a class="dropdown-item" href="addCleaners.php">Add Cleaner</a>
           <a class="dropdown-item" href="allCleaners.php">All Cleaner</a>
 
         </div>
