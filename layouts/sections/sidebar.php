@@ -17,7 +17,6 @@
           <a class="dropdown-item" href="addClient.php">Add Client</a>
           <a class="dropdown-item" href="allClients.php">All Clients</a>
           <a class="dropdown-item" href="assignCleaner.php">Assign Cleaner</a>
-          <a class="dropdown-item" href="shedule.php">Manage Schedule</a>
         </div>
       </li>
        <li class="nav-item dropdown">
