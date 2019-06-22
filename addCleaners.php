@@ -1,5 +1,4 @@
 <?php include'connection.php';?>
-<?php session_start();?>
 <?php include'layouts/header.php';?>
 <?php include'layouts/sections/sidebar.php';?>
 <div class="col">

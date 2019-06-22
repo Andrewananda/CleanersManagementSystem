@@ -84,6 +84,7 @@ if (isset($_POST['submit']))
       foreach ($sql as $test)
       { }
       $_SESSION['user_type'] = $test['user_type'];
+      $_SESSION['user_name'] = $test['first_name'] . $test['last_name'];
       header("Location: dashboard.php");
     }
     else

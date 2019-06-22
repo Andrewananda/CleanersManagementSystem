@@ -2,15 +2,18 @@
 ob_start();
 session_start();
 ?>
+
+
 <div id="wrapper">
       <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/cleaners.com">
+        <a class="nav-link" href="/cleaners.com/dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
+      <?php if($_SESSION['user_type'] === "admin"): ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-list"></i>
@@ -42,10 +45,8 @@ session_start();
 
         </div>
       </li>
-      <?php if($_SESSION['user_type'] == "cleaner")
-      {
-        ?>
-
+      <?php endif; ?>
+      <?php if($_SESSION['user_type'] == "cleaner"): ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-user"></i>
@@ -55,18 +56,17 @@ session_start();
           <a class="dropdown-item" href="cleanersAttendance.php">View Attendance</a>
         </div>
       </li>
-      <?php
-            }
-            ?>
+      <?php endif;?>
+      <?php if($_SESSION['user_type'] === "client"): ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-users"></i>
-          <span>My Cleaner</span>
+          <span>My Cleaners</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="clientCleaners.php">View Cleaner</a>
         </div>
       </li>
      
-      
+<?php endif;?>
     </ul>
