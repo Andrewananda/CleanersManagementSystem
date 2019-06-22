@@ -130,10 +130,11 @@ if(isset($_POST['submit']))
 {
     $cleaner_name = $cleaner['first_name'] . " " . $cleaner['last_name'];
     $client_name = $client['first_name'] . " " . $client['last_name'];
+    $user_id = $client['id'];
     $schedule_date = $_POST['schedule_date'];
     $description = $_POST['description'];
 
-    $sql = "INSERT INTO `clients` (`cleaner_name`,`client_name`,`schedule_date`) VALUES('$cleaner_name','$client_name','$schedule_date')";
+    $sql = "INSERT INTO `clients` (`cleaner_name`,`client_name`,`user_id`,`schedule_date`) VALUES('$cleaner_name','$client_name','$user_id','$schedule_date')";
     $assignCleaner = mysqli_query($conn,$sql);
 
 
