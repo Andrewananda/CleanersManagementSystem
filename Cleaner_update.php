@@ -25,7 +25,7 @@ if(isset($_POST['submit']))
    if($run && mysqli_affected_rows($conn) === 1)
    {
        echo 'success';
-       header("Location: allClients.php");
+       header("Location: allCleaners.php");
    }
    else
    {

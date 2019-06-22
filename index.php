@@ -86,17 +86,15 @@ if (isset($_POST['submit']))
       $_SESSION['user_id'] = $test['id'];
       $_SESSION['user_type'] = $test['user_type'];
       $_SESSION['user_name'] = $test['first_name'] . $test['last_name'];
+      $message = "Logged In successfully";
       header("Location: dashboard.php");
     }
     else
     {
-      die("error" . mysqli_connect_error($sql));
+      $message = "User_name or password does not exist";
     }
 
 }
 
-
-
-
-
 ?>
+
