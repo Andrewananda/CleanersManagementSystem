@@ -1,3 +1,7 @@
+<?php if(!isset($_SESSION)){
+    session_start();
+}
+?>
 <?php include'connection.php';?>
 <?php include'layouts/header.php';?>
 <?php include'layouts/sections/sidebar.php';?>
