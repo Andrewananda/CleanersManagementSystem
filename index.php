@@ -52,6 +52,7 @@ include'connection.php';
           </div>
           <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
         </form>
+
         <div class="text-center">
           <a class="d-block small mt-3" href="register.html">Register an Account</a>
           <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
@@ -86,12 +87,23 @@ if (isset($_POST['submit']))
       $_SESSION['user_id'] = $test['id'];
       $_SESSION['user_type'] = $test['user_type'];
       $_SESSION['user_name'] = $test['first_name'] . $test['last_name'];
-      $message = "Logged In successfully";
+      $message1 = "Logged In successfully";
+      if($_SESSION['user_type'] === "admin")
+      {
       header("Location: dashboard.php");
+      }
+      elseif ($_SESSION['user_type'] === "cleaner")
+      {
+        header("Location: cleanersAttendance.php");
+      }
+      elseif ($_SESSION['user_type'] === "client")
+      {
+        header("Location: clientCleaners.php");
+      }
     }
     else
     {
-      $message = "User_name or password does not exist";
+      echo "User_name or password does not exist";
     }
 
 }
