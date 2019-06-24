@@ -48,6 +48,17 @@ if(!isset($_SESSION)){
 
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Manage Category</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <a class="dropdown-item" href="category.php">Add Category</a>
+          <a class="dropdown-item" href="allCleaners.php">All Categories</a>
+
+        </div>
+      </li>
       <?php endif; ?>
       <?php if($_SESSION['user_type'] == "cleaner"): ?>
       <li class="nav-item dropdown">
