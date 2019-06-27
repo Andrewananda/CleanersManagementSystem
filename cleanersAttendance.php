@@ -51,6 +51,7 @@ $user_id = $_SESSION['user_id'];
                 <tbody>
         <?php  
           $query = mysqli_query($conn,"SELECT * FROM clients WHERE user_id = '$user_id' ORDER BY id DESC");
+
           if($query->num_rows > 0)
           {
               foreach($query as $row)

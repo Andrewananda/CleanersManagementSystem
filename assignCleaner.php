@@ -130,7 +130,7 @@ if(isset($_POST['submit']))
 {
     $cleaner_name = $cleaner['first_name'] . " " . $cleaner['last_name'];
     $client_name = $client['first_name'] . " " . $client['last_name'];
-    $user_id = $client['id'];
+    $user_id = $cleaner['id'];
     $phone = $client['phone'];
     $schedule_date = $_POST['schedule_date'];
     $description = $_POST['description'];
