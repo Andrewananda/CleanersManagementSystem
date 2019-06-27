@@ -3,10 +3,28 @@ if(!isset($_SESSION))
 {
     session_start();
 }
+$client_id =  $_SESSION['client_id'];
 
 ?>
-<?php include'layouts/header.php';?>
 <?php include'connection.php';?>
+<?php 
+if (isset($_POST['submit']))
+{
+    $sql = "UPDATE clients SET `status`= '1' WHERE `client_id` = '$client_id'";
+    $update = mysqli_query($conn,$sql);
+    if ($update)
+    {
+        header("Location: clientCleaners.php");
+    }
+
+}
+
+
+?>
+
+
+<?php include'layouts/header.php';?>
+
 
 <?php include'layouts/sections/sidebar.php';?>
 
@@ -51,8 +69,8 @@ if(!isset($_SESSION))
                 </tfoot>
                 <tbody>
         <?php  
-        $id = $_SESSION['user_id'];
-          $query = mysqli_query($conn,"SELECT  users.phone as phone,clients.id as id, clients.schedule_date as schedule_date, clients.cleaner_name as cleaner_name, clients.status as status FROM `clients` INNER JOIN users ON clients.user_id = users.id WHERE users.id = $id ORDER BY clients.id DESC ");
+        $id = $_SESSION['client_id'];
+         $query = mysqli_query($conn,"SELECT  users.phone as phone,clients.id as id, clients.schedule_date as schedule_date, clients.cleaner_name as cleaner_name, clients.status as status FROM `clients` INNER JOIN users ON clients.user_id = users.id WHERE clients.client_id = $id ORDER BY clients.id DESC ");
           if($query->num_rows > 0)
           {
               foreach($query as $row)
@@ -106,17 +124,4 @@ if(!isset($_SESSION))
 
 
 <?php include'layouts/footer.php'?>
-<?php 
-if (isset($_POST['submit']))
-{
-    $sql = "UPDATE clients SET `status`= '1' WHERE `user_id` = '$id'";
-    $update = mysqli_query($conn,$sql);
-    if ($update && mysqli_affected_rows === 1)
-    {
-        header("Location: clientCleaners.php");
-    }
 
-}
-
-
-?>

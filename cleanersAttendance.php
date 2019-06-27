@@ -32,7 +32,6 @@ $user_id = $_SESSION['user_id'];
                 <thead>
                   <tr>
                   <th>Client name</th>
-                    <th>Compliment</th>
                     <th>Schedule Date</th>
                     <th>Client Phone</th>
                     <th>Status</th>
@@ -42,7 +41,6 @@ $user_id = $_SESSION['user_id'];
                 <tfoot>
                   <tr>
                   <th>Client name</th>
-                    <th>Compliment</th>
                     <th>Schedule Date</th>
                     <th>Client Phone</th>
                     <th>Status</th>
@@ -59,7 +57,6 @@ $user_id = $_SESSION['user_id'];
                 ?>
                   <tr>
                     <td><?=$row['client_name'];?></td>
-                    <td><?=$row['compliment'];?></td>
                     <td><?=$row['schedule_date'];?></td>
                     <td><?=$row['phone'];?></td>
                     <?php 
