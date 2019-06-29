@@ -1,5 +1,5 @@
 <?php include'layouts/header.php';?>
-
+<?php include'connection.php';?>
   <?php include'layouts/sections/sidebar.php';?>
     <div id="content-wrapper">
 
@@ -13,9 +13,12 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-5">26 New Messages!</div>
+                <?php 
+                  $select = mysqli_query($conn,"SELECT * FROM clients");
+                ?> 
+                <div class="mr-5"><?php echo mysqli_num_rows($select);?> Clients</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1" href="allClients.php">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
@@ -29,9 +32,12 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-list"></i>
                 </div>
-                <div class="mr-5">11 New Tasks!</div>
+                <?php 
+                  $select = mysqli_query($conn,"SELECT * FROM cleaners");
+                ?>
+                <div class="mr-5"><?php echo mysqli_num_rows($select);?> Cleaners</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1" href="allCleaners.php">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
@@ -45,9 +51,12 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-shopping-cart"></i>
                 </div>
-                <div class="mr-5">123 New Orders!</div>
+                <?php 
+                  $select = mysqli_query($conn,"SELECT * FROM clients WHERE status = '1'");
+                ?>
+                <div class="mr-5"><?php echo mysqli_num_rows($select);?> Attendance</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1" href="followups.php">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
@@ -61,9 +70,12 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-life-ring"></i>
                 </div>
-                <div class="mr-5">13 New Tickets!</div>
+                <?php 
+                  $select = mysqli_query($conn,"SELECT * FROM clients WHERE status = '0'");
+                ?>
+                <div class="mr-5"><?php echo mysqli_num_rows($select);?> Pending followups</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1" href="followups.php">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
@@ -72,63 +84,64 @@
             </div>
           </div>
         </div>
-
         <!-- Area Chart Example-->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-chart-area"></i>
-            Area Chart Example</div>
-          <div class="card-body">
-            <canvas id="myAreaChart" width="100%" height="30"></canvas>
-          </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-        </div>
 
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Data Table Example</div>
+            Clients</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Cleaner</th>
+                    <th>Status</th>
+                    <th>Phone</th>
+                    <th>Schedule date</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                  <th>Name</th>
+                    <th>Cleaner</th>
+                    <th>Status</th>
+                    <th>Phone</th>
+                    <th>Schedule date</th>
                   </tr>
                 </tfoot>
                 <tbody>
+                <?php 
+            $select = mysqli_query($conn,"SELECT * FROM clients");
+            foreach($select as $client)
+            {
+              ?>
                   <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
+                    <td><?php echo $client['client_name'];?></td>
+                    <td><?php echo $client['cleaner_name'];?></td>
+                    <td>
+                      <?php 
+                      if($client['status']==='1')
+                      {
+                        ?>
+                        <button class="btn btn-primary">Visited</button>
+                        <?php
+                      }else {
+                        ?>
+                        <button class="btn btn-danger">Pending</button>
+                        <?php
+                      }
+                      
+                      ?>
+                    </td>
+                    <td><?php echo $client['phone'];?></td>
+                    <td><?php echo $client['schedule_date']?></td>
                   </tr>
-                  <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                  </tr>
+                  <?php
+                    }
+                 ?>
                 </tbody>
               </table>
             </div>
@@ -137,6 +150,7 @@
 
       </div>
       <!-- /.container-fluid -->
+
 
 
 <?php include'layouts/footer.php'?>
